@@ -13,13 +13,6 @@ public class NotificationTask {
     private String notificationText;
     private String notificationDateAndTime;
 
-    public NotificationTask(Long id, Long chatId, String notificationText, String notificationDateAndTime) {
-        this.id = id;
-        this.chatId = chatId;
-        this.notificationText = notificationText;
-        this.notificationDateAndTime = notificationDateAndTime;
-    }
-
     public Long getId() {
         return id;
     }
