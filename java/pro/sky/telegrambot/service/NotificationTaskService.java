@@ -5,8 +5,6 @@ import org.springframework.stereotype.Service;
 import pro.sky.telegrambot.model.NotificationTask;
 import pro.sky.telegrambot.repository.NotificationTaskRepository;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -43,11 +41,13 @@ public class NotificationTaskService {
             String scanMessage = "Введи сообщение в формате ДД.ММ.ГГГГ ЧЧ:ММ <текст сообщения>";
             return scanMessage;
         } else if (matcher.matches()) {
-            notificationTaskRepository.save(new NotificationTask(
-                    1L,
-                    5000126412L,
-                    "asdf",
-                    "01.01.2020 15:15"));
+            NotificationTask notificationTask = new NotificationTask();
+            notificationTask.setChatId(5000126412L);
+            notificationTask.setNotificationText("Текст напоминания");
+            notificationTask.setDateAndTime("01.01.2020 15:15");
+
+            notificationTaskRepository.save(notificationTask);
+
             String scanMessage = "Напоминание сохранено.";
             return scanMessage;
         } else {
