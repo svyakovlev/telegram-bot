@@ -52,6 +52,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
 
             SendMessage replyMessage = new SendMessage(chatId, scanUserMessage);
             telegramBot.execute(replyMessage);
+
         });
 
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
