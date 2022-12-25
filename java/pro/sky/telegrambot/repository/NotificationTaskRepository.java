@@ -5,4 +5,6 @@ import pro.sky.telegrambot.model.NotificationTask;
 
 public interface NotificationTaskRepository extends JpaRepository<NotificationTask, Integer> {
 
+    NotificationTask findNotificationTaskByDateAndTime(String dateAndTime);
+
 }
