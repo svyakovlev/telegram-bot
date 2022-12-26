@@ -24,12 +24,12 @@ public class NotificationTaskService {
     public void createNotification(Long chatId, String userMessage) {
 
         String notificationText = userMessage.substring(17);
-        String notificationDateAndTime = userMessage.substring(0, 16);
+        String notificationMomentString = userMessage.substring(0, 16);
 
         NotificationTask notificationTask = new NotificationTask();
         notificationTask.setChatId(chatId);
-        notificationTask.setDateAndTime(notificationDateAndTime);
-        notificationTask.setNotificationText(notificationText);
+        notificationTask.setNotificationMoment(notificationMomentString);
+        notificationTask.setNotificationMessage(notificationText);
 
         notificationTaskRepository.save(notificationTask);
     }

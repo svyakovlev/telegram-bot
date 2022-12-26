@@ -32,12 +32,14 @@ public class TelegramBotApplication {
     @Scheduled(fixedDelay = 60_000L)
     public void run() {
 
-        LocalDateTime notificationDateAndTime = LocalDateTime.parse("26.12.2022 23:28", DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
-        LocalDateTime localDateAndTime = LocalDateTime.parse(LocalDateTime.now().format(formatter), DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
+        String localMomentString = LocalDateTime.now().format(formatter);
 
-        if (notificationDateAndTime.equals(localDateAndTime)) {
-            SendMessage replyMessage = new SendMessage(5000126412L, "UserMessage");
+        if (notificationTaskRepository.findNotificationTaskByNotificationMoment(localMomentString) != null) {
+            Long chatId = notificationTaskRepository.findNotificationTaskByNotificationMoment(localMomentString).getChatId();
+            String notificationMessage = notificationTaskRepository.findNotificationTaskByNotificationMoment(localMomentString).getNotificationMessage();
+
+            SendMessage replyMessage = new SendMessage(chatId, notificationMessage);
             telegramBot.execute(replyMessage);
         }
 
