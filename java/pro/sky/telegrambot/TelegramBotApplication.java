@@ -42,6 +42,5 @@ public class TelegramBotApplication {
             SendMessage replyMessage = new SendMessage(chatId, notificationMessage);
             telegramBot.execute(replyMessage);
         }
-
     }
 }
